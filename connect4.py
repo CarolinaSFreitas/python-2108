@@ -39,6 +39,20 @@ def mostra_tabuleiro():
     print("  +---------------------+")
     print("     1  2  3  4  5  6  7 ")
 
+def linha_disponivel(coluna):
+    disponivel = -1                #-1 significa indisponível
+    for i in range(NUM_LINHAS-1, -1, -1):
+        if jogo[i][coluna] == " ":
+            disponivel = i
+            break
+    return disponivel
+
+def verifica_vencedor(simbolo): 
+    # quatro colunas consecutvas = venceu
+    for l in range(NUM_LINHAS):
+        for c in range(NUM_COLUNAS-3):
+            if jogo[l][c] == simbolo and jogo[l][c+1] == simbolo and jogo[l][c+2] == simbolo and jogo[l][c+3] == simbolo:
+                return True
 
 #chama as funções de inicialização 
 cria_jogo()
@@ -59,11 +73,20 @@ while True:
 
     coluna = int(input(f"\nJogador {jogador}, informe a coluna: "))
 
-    if coluna == 0:
+    if coluna == 0 or coluna > NUM_COLUNAS:
         break
 
-    linha = 5
-    jogo[linha][coluna-1] = jogador
-    contador += 1
+    linha = linha_disponivel(coluna-1)
+    if linha == -1:
+        print("Coluna já preenchida, jogue em outra!")
+    else:
+        jogo[linha][coluna-1] = jogador
+        contador += 1
 
     mostra_tabuleiro()
+
+    if verifica_vencedor(jogador):
+        print()
+        print(Fore.CYAN+"*"*45)
+        print(Fore.GREEN+f"Parabéns Jogador {jogador}! Você venceu!")
+        break
