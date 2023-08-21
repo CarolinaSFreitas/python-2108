@@ -44,10 +44,33 @@
 18. `mostra_tabuleiro()`: O tabuleiro atualizado é exibido novamente após cada jogada.
 
 Isso resume o funcionamento do código, onde jogadores alternam, fazem suas jogadas e o tabuleiro é atualizado e exibido. 
-É um ótimo exemplo de como você pode usar loops, estruturas condicionais e funções para criar um jogo simples em Python."
+É um ótimo exemplo de como você pode usar loops, estruturas condicionais e funções para criar um jogo simples em Python.
+
+Claro, vou explicar as mudanças no código que você forneceu:
+
+1. `def linha_disponivel(coluna)`: Essa é uma nova função que verifica a primeira linha vazia em uma coluna específica. Ela percorre as linhas de baixo para cima até encontrar a primeira linha disponível. Se a coluna estiver cheia, a função retorna -1.
+
+2. `def verifica_vencedor(simbolo)`: Essa função verifica se um jogador venceu, procurando por quatro símbolos consecutivos na horizontal.
+
+3. No início do loop `while True`, após receber a entrada da coluna do jogador, agora o código verifica se a coluna informada está fora dos limites (maior que `NUM_COLUNAS`) ou igual a 0 (indicando saída do jogo). Se sim, o loop é interrompido e o jogo termina.
+
+4. Em seguida, a linha disponível para a jogada é obtida usando a função `linha_disponivel(coluna-1)`, onde `coluna-1` é usado para ajustar para o índice base 0.
+
+5. Se `linha` for -1, isso significa que a coluna está cheia, então uma mensagem é exibida informando ao jogador que a coluna está preenchida.
+
+6. Caso contrário, a posição é atualizada com o símbolo do jogador e o contador é incrementado.
+
+7. Após cada jogada, o tabuleiro é mostrado novamente.
+
+8. Finalmente, o código verifica se o jogador atual venceu usando a função `verifica_vencedor(jogador)`. Se o jogador venceu, uma mensagem é exibida e o loop é interrompido.
+
+Essas mudanças adicionaram a funcionalidade de verificar se um jogador venceu ao conectar quatro de seus símbolos consecutivos na horizontal. Isso adiciona um elemento de vitória ao jogo Connect 4, tornando-o mais interessante e desafiador."
+
+
 
 A saída no terminal:
 ![image](https://github.com/CarolinaSFreitas/python-2108/assets/99994934/8057d1e7-9e3e-45eb-9949-4c93ab10ed2a)
+![image](https://github.com/CarolinaSFreitas/python-2108/assets/99994934/03b9d750-c12f-41c9-8402-ed1ac37f6dfb)
 
 ## Lembretes:
 
